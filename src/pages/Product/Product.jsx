@@ -1,74 +1,65 @@
 import React from "react";
-import { useParams, useState } from "react-router-dom";
+import { useState } from "react-router-dom";
 import "./Product.scss";
-import List from "../../components/List/List";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCartIcon";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorderIcon";
+import BalanceIcon from "@mui/icons-material/BalanceIcon";
 
 const Product = () => {
-  const catId = parseInt(useParams().id);
-  const [maxPrice, setMaxPrice] = useState(1000);
-  const [sort, setSort] = useState(null);
+  const [selectedImg, setSelectedImg] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const images = [];
 
   return (
     <div className="product">
       <div className="left">
-        <div className="fliterItem">
-          <h2>Product Categories</h2>
-          <div className="inputItem">
-            <input type="checkbox" id="1" value={1} />
-            <label htmlFor="1">Shoes</label>
-          </div>
-          <div className="inputItem">
-            <input type="checkbox" id="2" value={2} />
-            <label htmlFor="2">Skirts</label>
-          </div>
-          <div className="inputItem">
-            <input type="checkbox" id="3" value={3} />
-            <label htmlFor="3">Coats</label>
-          </div>
+        <div className="images">
+          <img src={images[0]} alt="" onClick={(e) => setSelectedImg(0)} />
+          <img src={images[1]} alt="" onClick={(e) => setSelectedImg(1)} />
         </div>
-        <div className="fliterItem">
-          <h2>Fliter by Price</h2>
-          <div className="inputItem">
-            <span>0</span>
-            <input
-              type="range"
-              min={0}
-              max={1000}
-              onChange={(e) => setMaxPrice(e.target.value)}
-            />
-            <span>{maxPrice}</span>
-          </div>
-        </div>
-        <div className="fliterItem">
-          <h2>Sort By</h2>
-          <div className="inputItem">
-            <input
-              type="radio"
-              id="asc"
-              value="asc"
-              name="price"
-              onChange={(e) => setSort("asc")}
-            />
-            <label htmlFor="asc">Price (Lowest first)</label>
-          </div>
-          <div className="inputItem">
-            <input
-              type="radio"
-              id="des"
-              value="des"
-              name="price"
-              onChange={(e) => setSort("des")}
-            />
-            <label htmlFor="des">Price (Highest first)</label>
-          </div>
+        <div className="mainImg">
+          <img src={images[selectedImg]} alt="" />
         </div>
       </div>
       <div className="right">
-        <img className="catImg" src="" alt="" />
-        <List catId={catId} maxPrice={maxPrice} sort={sort} />
+        <h1>Title</h1>
+        <span>$118</span>
+        <p>fsfdsfdsfdsfdsfdsfdsfdsdsfds</p>
+        <div className="quantity">
+          <button
+            onClick={() => setQuantity((prev) => (prev === 1 ? 1 : prev - 1))}
+          >
+            -
+          </button>
+          {quantity}
+          <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
+        </div>
+        <button className="add">
+          <AddShoppingCartIcon /> Add to Cart
+        </button>
+        <div className="link">
+          <div className="item">
+            <FavoriteBorderIcon /> Add to Wishlist
+          </div>
+          <div className="item">
+            <BalanceIcon /> Add to Compare
+          </div>
+          <div className="info">
+            <span>Vendor: </span>
+            <span>Product: shirt</span>
+            <span>Tag: shirt</span>
+          </div>
+          <hr />
+          <div className="info">
+            <span>Description</span>
+            <hr />
+            <span>Additional Information</span>
+            <hr />
+            <span>FAQ</span>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
-
 export default Product;
