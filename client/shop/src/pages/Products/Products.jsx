@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react-redux";
 import { useParams } from "react-redux";
 import List from "../../components/List/List";
-import useFetch from "../../hooks/useFecth";
+import useFetch from "../../hooks/useFetch";
 import "./Products.scss";
 
 const Products = () => {

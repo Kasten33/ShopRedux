@@ -1,5 +1,5 @@
 import React from "react";
-import "./Cart.css";
+import "./Cart.scss";
 import DeleteOutLinedIcon from "@mui/icons-material/DeleteOutlined";
 
 const Cart = ({ cart, removeFromCart }) => {

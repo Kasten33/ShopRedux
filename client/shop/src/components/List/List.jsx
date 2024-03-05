@@ -1,6 +1,6 @@
 import React from "react";
 import "./List.scss";
-import Card from "../Card/Card";
+import Cards from "../Cards/Cards";
 import useFetch from "../../hooks/useFetch";
 
 const List = ({ subCats, maxPrice, sort, catId }) => {
@@ -14,7 +14,7 @@ const List = ({ subCats, maxPrice, sort, catId }) => {
     <div className="list">
       {loading
         ? "loading"
-        : data?.map((item) => <Card item={item} key={item.id} />)}
+        : data?.map((item) => <Cards item={item} key={item.id} />)}
     </div>
   );
 };

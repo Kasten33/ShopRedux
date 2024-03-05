@@ -1,5 +1,5 @@
 import React from "react";
-import "./FeaturedProducts.css";
+import "./FeaturedProducts.scss";
 import Cards from "../Cards/Cards";
 import useFetch from "../../hooks/useFetch";
 

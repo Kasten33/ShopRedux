@@ -2,9 +2,9 @@ import React from "react";
 import { useParams, useState } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import "./Product.scss";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCartIcon";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorderIcon";
-import BalanceIcon from "@mui/icons-material/BalanceIcon";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import BalanceIcon from "@mui/icons-material/Balance";
 
 const Product = () => {
   const id = useParams().id;
