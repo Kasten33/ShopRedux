@@ -1,55 +1,39 @@
 import React from "react";
-import { useState } from "react-redux";
-import { useParams } from "react-redux";
-import List from "../../components/List/List";
-import useFetch from "../../hooks/useFecth";
+import { useParams, useState } from "react-router-dom";
 import "./Products.scss";
+import List from "../../components/List/List";
 
 const Products = () => {
   const catId = parseInt(useParams().id);
   const [maxPrice, setMaxPrice] = useState(1000);
   const [sort, setSort] = useState(null);
-  const [selectedSubCats, setSelectedSubCats] = useState([]);
-
-  const { data } = useFetch(
-    `/sub-categories/[filter][castegories][id][$eq]=${catId}`
-  );
-
-  const handleChange = (e) => {
-    const value = e.target.value;
-    const isChecked = e.target.checked;
-
-    setSelectedSubCats(
-      isChecked
-        ? [...selectedSubCats, value]
-        : selectedSubCats.filter((item) => item !== value)
-    );
-  };
 
   return (
     <div className="products">
       <div className="left">
-        <div className="filterItem">
-          {data?.map((item) => (
-            <div className="inputItem" key={item.id}>
-              <input
-                type="checkbox"
-                id={item.id}
-                value={item.id}
-                onChange={handleChange}
-              />
-              <label htmlFor={item.id}>{item.attributes.title}</label>
-            </div>
-          ))}
+        <div className="fliterItem">
+          <h2>Product Categories</h2>
+          <div className="inputItem">
+            <input type="checkbox" id="1" value={1} />
+            <label htmlFor="1">Shoes</label>
+          </div>
+          <div className="inputItem">
+            <input type="checkbox" id="2" value={2} />
+            <label htmlFor="2">Skirts</label>
+          </div>
+          <div className="inputItem">
+            <input type="checkbox" id="3" value={3} />
+            <label htmlFor="3">Coats</label>
+          </div>
         </div>
-        <div className="filterItem">
-          <p>FIlter By Price</p>
+        <div className="fliterItem">
+          <h2>Fliter by Price</h2>
           <div className="inputItem">
             <span>0</span>
             <input
               type="range"
-              min="0"
-              max="1000"
+              min={0}
+              max={1000}
               onChange={(e) => setMaxPrice(e.target.value)}
             />
             <span>{maxPrice}</span>
@@ -81,12 +65,7 @@ const Products = () => {
       </div>
       <div className="right">
         <img className="catImg" src="" alt="" />
-        <List
-          catId={catId}
-          maxPrice={maxPrice}
-          sort={sort}
-          subCats={selectedSubCats}
-        />
+        <List catId={catId} maxPrice={maxPrice} sort={sort} />
       </div>
     </div>
   );
